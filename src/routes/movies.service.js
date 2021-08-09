@@ -1,6 +1,7 @@
 const knex = require("../db/connection");
 
 function list(is_showing) {
+    //return query that all movies that "is_showing" with the theaters info
     return knex("movies")
       .select("movies.*")
       .modify((queryBuilder) => {
@@ -18,6 +19,7 @@ function list(is_showing) {
   }
 
 function read(movie_id) {
+  //read movie that matches movie_id
     return knex("movies").select("*").where({movie_id}).first();
 }
 
@@ -26,6 +28,7 @@ function readTheaters(movie_id) {
 }
 
 function readReviews(movie_id) {
+  //read reviews where movie_id matches
     return knex("reviews").join("critics","reviews.critic_id","critics.critic_id").select("*").where("reviews.movie_id", movie_id);
  }
 

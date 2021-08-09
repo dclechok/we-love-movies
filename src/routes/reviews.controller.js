@@ -13,6 +13,7 @@ async function reviewExists(req, res, next) {
   next({ status: 404, message: `Review cannot be found` });
 }
 
+// END MIDDLEWARE
 async function destroy(req, res) {
   await reviewsService.destroy(res.locals.review.review_id);
   res.sendStatus(204);
@@ -33,6 +34,7 @@ async function update(req, res) {
   res.json({ data });
 }
 
+//add asyncErrorBoundary for async requests
 module.exports = {
   destroy: [asyncErrorBoundary(reviewExists), asyncErrorBoundary(destroy)],
   list: [asyncErrorBoundary(list)],

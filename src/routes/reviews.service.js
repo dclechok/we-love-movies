@@ -19,7 +19,7 @@ async function readCritic(critic_id) {
   return knex("critics").where({ critic_id }).first();
 }
 
-async function setCritic(review) {
+async function setCritic(review) { //setting a new critic
   review.critic = await readCritic(review.critic_id);
   console.log(review);
   return review;
