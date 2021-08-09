@@ -16,7 +16,7 @@ async function reviewExists(req, res, next) {
 // END MIDDLEWARE
 async function destroy(req, res) {
   await reviewsService.destroy(res.locals.review.review_id);
-  res.sendStatus(204);
+  res.sendStatus(204); //if destroy is successful
 }
 
 async function list(req, res) {
@@ -25,6 +25,7 @@ async function list(req, res) {
 }
 
 async function update(req, res) {
+  //update information with deconstructed data
   const updatedReview = {
     ...res.locals.review,
     ...req.body.data,
